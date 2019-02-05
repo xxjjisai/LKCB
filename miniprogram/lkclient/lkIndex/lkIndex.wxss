@@ -1,6 +1,29 @@
 /* miniprogram/pages/lkAdmin/lkAdmin.wxss */
 /* @import '../../style/lk_swiper.wxss'; */
 
+.zk-color-white {
+    color: #cfcfcf;
+}
+
+.zk-city{
+    /* margin-left:210px; */
+    margin-right:220px;
+    line-height:28px;
+    color:#cfcfcf;
+    white-space:nowrap
+}
+
+.zk-icon-search{
+    margin-left:120rpx;
+    font-size:inherit
+}
+
+.zk-swiper-item{
+    display: block;
+    width: 100%;
+    height: 160px;
+  }
+
 /* 搜索 */
 .searchbar-result{
     margin-top: 0;

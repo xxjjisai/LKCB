@@ -23,7 +23,30 @@ Page({
       accounts: ["微信号", "QQ", "Email"],
       accountIndex: 0,
 
-      isAgree: false
+      isAgree: false,
+
+      zkcountries: ["餐饮", "招聘", "健康"],
+      zkcountryIndex: 0,
+      zkisAgree: false,
+
+      zkShopName:[
+        {
+            name:"转让求租",
+            url:"/lkclient/lkAdd_zhuanrang/lkAdd_zhuanrang"
+        },
+        {
+            name:"求职招聘",
+            url:"/lkclient/lkAdd_zhaopin/lkAdd_zhaopin"
+        },
+        // {
+        //     name:"商家入驻",
+        //     url:"/lkclient/lkAdd_zhuanrang/lkAdd_zhuanrang"
+        // },
+        // {
+        //     name:"广告加盟",
+        //     url:"/lkclient/lkAdd_zhuanrang/lkAdd_zhuanrang"
+        // },
+    ],
   },
   showTopTips: function(){
       var that = this;
@@ -101,6 +124,11 @@ Page({
   bindAgreeChange: function (e) {
       this.setData({
           isAgree: !!e.detail.value.length
+      });
+  },
+  zkbindAgreeChange: function (e) {
+      this.setData({
+        zkisAgree: !!e.detail.value.length
       });
   }
 });

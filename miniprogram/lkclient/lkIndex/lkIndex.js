@@ -16,7 +16,29 @@ Page({
     longitude:'',
     inputShowed: false,
     inputVal: "",
-    tabs: ["餐饮", "招聘", "健康"],
+    zkSerchShowLong:220,
+    openid:"",
+    zkFunc:[
+      {name:"发布需求"},
+      {name:"商家入驻"},
+      {name:"广告加盟"},
+      {name:"关于我们"},
+    ],
+    zkShopName:[
+      {name:"重庆鸡公煲"},
+      {name:"固始鹅块"},
+      {name:"新疆烤肉"},
+      {name:"四川小小"},
+      {name:"串串香"},
+      {name:"麻辣火锅"},
+      {name:"尽头巴脑"},
+      {name:"胖哥俩蟹肉包"},
+    ],
+    // tabs: ["转让求租", "求职招聘", "商家信息","广告加盟"],
+    tabs: ["转让求租", "求职招聘"],
+    zktbCanYin:[],
+    zktbZhaoPin:[],
+    zktbJanKang:[],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
@@ -32,6 +54,7 @@ Page({
     nextMargin: 0
   },
 
+  // 滚动试图
   changeProperty: function (e) {
     var propertyName = e.currentTarget.dataset.propertyName
     var newData = {}
@@ -63,18 +86,68 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (app.globalData.openid) {
+      this.setData({
+        openid: app.globalData.openid
+      })
+    }
     qqmapsdk = new QQMapWX({
       key:'NREBZ-CPGWQ-ASU5P-GBICN-JUAKO-ZYFPY'
-    });
-    var that = this;
-    wx.getSystemInfo({
-        success: function(res) {
-            that.setData({
-                sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-                sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-            });
-        }
-    });
+    }); 
+  },
+
+  onQueryZhuanRangList:function(){
+    const db = wx.cloud.database()
+    // 查询当前用户所有的 lk_add_zhuanrang
+    db.collection('lk_add_zhuanrang').where({
+      _openid: this.data.openid
+    }).get({
+      success: res => {
+        var tbList = res.data;
+        tbList.sort((a,b)=>{
+          return a.timestamp + b.timestamp;
+        })
+        this.setData({
+          zktbCanYin: tbList
+        })
+        console.log('[数据库] [查询记录] 成功: ', res)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+
+  },
+
+  onQueryZhaoPinList:function(){
+    const db = wx.cloud.database()
+    // 查询当前用户所有的 lk_add_zhuanrang
+    db.collection('lk_add_zhaopin').where({
+      _openid: this.data.openid
+    }).get({
+      success: res => {
+        var tbList = res.data;
+        tbList.sort((a,b)=>{
+          return a.timestamp + b.timestamp;
+        })
+        this.setData({
+          zktbZhaoPin: tbList
+        })
+        console.log('[数据库] [查询记录] 成功: ', res)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+
   },
 
   tabClick: function (e) {
@@ -96,6 +169,8 @@ Page({
    */
   onShow: function () {
     this.getUserLocation();
+    this.onQueryZhuanRangList();
+    this.onQueryZhaoPinList();
   },
 
   /**
@@ -134,29 +209,37 @@ Page({
   },
 
   //----------------------------------
+  //搜索 
   showInput: function () {
+    // console.log("showInput")
       this.setData({
-          inputShowed: true
+          inputShowed: true,
+          zkSerchShowLong:10
       });
   },
   hideInput: function () {
+    // console.log("hideInput")
       this.setData({
           inputVal: "",
-          inputShowed: false
+          inputShowed: false,
+          zkSerchShowLong:220
       });
   },
   clearInput: function () {
+    // console.log("clearInput")
       this.setData({
           inputVal: ""
       });
   },
   inputTyping: function (e) {
+    // console.log("inputTyping")
       this.setData({
           inputVal: e.detail.value
       });
   },
   //----------------------------------
 
+  // 定位
   getLocation:function (){
     wx.getLocation({
       type:'wgs84',
