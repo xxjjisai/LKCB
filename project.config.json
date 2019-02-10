@@ -7,11 +7,12 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"uglifyFileName": true
 	},
-	"appid": "wx52e0e932c530722c",
+	"appid": "wx4d9eeda5ac76e5c1",
 	"projectname": "LKCB",
-	"libVersion": "2.2.5",
+	"libVersion": "2.5.2",
 	"condition": {
 		"search": {
 			"current": -1,

@@ -51,7 +51,34 @@ Page({
     interval: 2000,
     duration: 500,
     previousMargin: 0,
-    nextMargin: 0
+    nextMargin: 0,
+
+    zk_limit:10,
+    // 全局列表页数用来统计当前加载到多少页（下拉，初始化）
+    zk_ZhuanRang_Page:0,
+    zk_ZhaoPin_Page:0
+
+  },
+
+  //点击tap或者下拉刷新，重新初始化页面并且加载列表到最新
+  pageBottomConcat:function(){
+    this.setData({
+      zk_ZhuanRang_Page:0,
+      zktbCanYin: [],
+      zk_ZhaoPin_Page:0,
+      zktbZhaoPin: []
+    });
+  },
+
+  // 上拉列表加载更多的列表项
+  pageUpdateConcat:function(){
+    var zk_ZhuanRang_Page = this.data.zk_ZhuanRang_Page;
+    var zk_ZhaoPin_Page = this.data.zk_ZhaoPin_Page;
+    var zk_limit = this.data.zk_limit;
+    this.setData({
+      zk_ZhuanRang_Page:zk_ZhuanRang_Page+zk_limit,
+      zk_ZhaoPin_Page:zk_ZhaoPin_Page+zk_limit
+    });
   },
 
   // 滚动试图
@@ -86,6 +113,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("app.globalData.openid",app.globalData.openid)
     if (app.globalData.openid) {
       this.setData({
         openid: app.globalData.openid
@@ -96,21 +124,37 @@ Page({
     }); 
   },
 
+  onQueryListInfo:function(){
+    var type = this.data.activeIndex;
+    if (type == 0 ){
+      this.onQueryZhuanRangList();
+    }else if (type == 1 ){
+      this.onQueryZhaoPinList();
+    }
+  },
+
   onQueryZhuanRangList:function(){
+    var old_zktbCanYin = this.data.zktbCanYin;
+    var page = this.data.zk_ZhuanRang_Page;
+    var zk_limit = this.data.zk_limit;
     const db = wx.cloud.database()
+    const _ = db.command
     // 查询当前用户所有的 lk_add_zhuanrang
-    db.collection('lk_add_zhuanrang').where({
-      _openid: this.data.openid
-    }).get({
+    db.collection('lk_add_zhuanrang')
+    .where({
+      // _openid: this.data.openid
+      // zkIcon: _.eq("con_nav_special")
+    })
+    .orderBy('timestamp', 'desc')
+    .skip(page)
+    .limit(zk_limit)
+    .get({
       success: res => {
-        var tbList = res.data;
-        tbList.sort((a,b)=>{
-          return a.timestamp + b.timestamp;
-        })
+        var tbList = old_zktbCanYin.concat(res.data);
         this.setData({
-          zktbCanYin: tbList
+          zktbCanYin: tbList,
         })
-        console.log('[数据库] [查询记录] 成功: ', res)
+        console.log('[数据库] [查询记录] 餐饮信息 成功: ', res)
       },
       fail: err => {
         wx.showToast({
@@ -125,19 +169,24 @@ Page({
 
   onQueryZhaoPinList:function(){
     const db = wx.cloud.database()
+    var old_zktbZhaoPin = this.data.zktbZhaoPin;
+    var page = this.data.zk_ZhaoPin_Page;
+    var zk_limit = this.data.zk_limit;
+    console.log("this.data.openid",this.data.openid)
     // 查询当前用户所有的 lk_add_zhuanrang
     db.collection('lk_add_zhaopin').where({
-      _openid: this.data.openid
-    }).get({
-      success: res => {
-        var tbList = res.data;
-        tbList.sort((a,b)=>{
-          return a.timestamp + b.timestamp;
-        })
+      // _openid: this.data.openid
+    })
+    .orderBy('timestamp', 'desc')
+    .skip(page)
+    .limit(zk_limit)
+    .get({
+      success: res => { 
+        var tbList = old_zktbZhaoPin.concat(res.data);
         this.setData({
           zktbZhaoPin: tbList
         })
-        console.log('[数据库] [查询记录] 成功: ', res)
+        console.log('[数据库] [查询记录] 招聘信息 成功: ', res)
       },
       fail: err => {
         wx.showToast({
@@ -151,10 +200,13 @@ Page({
   },
 
   tabClick: function (e) {
+    this.pageBottomConcat();
+    console.log("e.currentTarget.id",e.currentTarget.id)
     this.setData({
-        sliderOffset: e.currentTarget.offsetLeft,
-        activeIndex: e.currentTarget.id
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
     });
+    this.onQueryListInfo();
   },
 
   /**
@@ -169,7 +221,8 @@ Page({
    */
   onShow: function () {
     this.getUserLocation();
-    this.onQueryZhuanRangList();
+    this.pageBottomConcat();
+    this.onQueryZhuanRangList(); 
     this.onQueryZhaoPinList();
   },
 
@@ -191,14 +244,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.pageBottomConcat();
+    this.onQueryListInfo();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.pageUpdateConcat();
+    this.onQueryListInfo();
   },
 
   /**

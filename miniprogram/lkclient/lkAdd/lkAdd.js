@@ -130,5 +130,17 @@ Page({
       this.setData({
         zkisAgree: !!e.detail.value.length
       });
+  },
+  onLoad: function (options) {
+    console.log("app.globalData.openid",app.globalData.openid)
+    if (app.globalData.openid) {
+      this.setData({
+        openid: app.globalData.openid
+      })
+    }
+    else 
+    {
+        
+    }
   }
 });
