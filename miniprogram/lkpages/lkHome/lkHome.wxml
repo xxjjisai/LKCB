@@ -1,0 +1,16 @@
+<!--miniprogram/lkpages/lkHome/lkHome.wxml-->
+
+<view class="page"> 
+    <view class="weui-search-bar">
+        <view class = "zk_city" style='margin-right:18px' >
+            <icon class="iconfont icon-location-copy" style='margin-right:4px' size="14"></icon>
+            <label bindtap="fClickLocation">北京市</label>
+        </view>
+        <view class="weui-search-bar__form">
+            <label class="weui-search-bar__label" bindtap="fClickSearchBar">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+    </view>
+</view>
