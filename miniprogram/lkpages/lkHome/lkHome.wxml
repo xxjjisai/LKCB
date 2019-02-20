@@ -67,6 +67,19 @@
                     </navigator>
                 </block>
             </view>
+            <view hidden="{{activeIndex != 3}}">
+                <block wx:for="{{zktbSJRZ}}" wx:key="*this">
+                    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="../../images/weui/{{item.zkIcon}}.png" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.zkShopName}}</view>
+                            <view class="weui-media-box__desc">{{item.zkShopInfo}}</view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
         </view>
     </view>
 

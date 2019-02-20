@@ -9,10 +9,11 @@ Page({
   data: {
     city:"全国",
     bGetUserInfo:false,
-    tabs: ["旺铺转让", "门面求租", "门面出租"],
+    tabs: ["旺铺转让", "门面求租", "门面出租","入驻商家"],
     zktbWPZR:[],
     zktbMMQZ:[],
     zktbMMCZ:[],
+    zktbSJRZ:[],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
@@ -71,6 +72,8 @@ Page({
       this.onQueryMMQZList();
     }else if(type == 2){
       this.onQueryMMCZList();
+    }else if(type == 3){
+      this.onQuerySJRZList();
     }
   },
 
@@ -139,6 +142,36 @@ Page({
 
   },
 
+  onQuerySJRZList:function(){
+    const db = wx.cloud.database();
+    var old_zktbSJRZ = this.data.zktbSJRZ;
+    var page = this.data.zk_MMQZ_Page;
+    var zk_limit = this.data.zk_limit;
+    // 查询当前用户所有的 lk_add_zhuanrang
+    db.collection('lk_sjrz').where({
+      // _openid: this.data.openid
+    })
+    .orderBy('timestamp', 'desc')
+    .skip(page)
+    .limit(zk_limit)
+    .get({
+      success: res => { 
+        var tbList = old_zktbSJRZ.concat(res.data);
+        this.setData({
+          zktbSJRZ: tbList
+        })
+        // console.log('[数据库] [查询记录] 招聘信息 成功: ', res)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+  },
+  
   onQueryMMCZList:function(){
     const db = wx.cloud.database()
     var old_zktbMMCZ = this.data.zktbMMCZ;
