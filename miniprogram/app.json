@@ -1,7 +1,7 @@
 {
   "pages": [
-    "lkpages/lkAdd/lkAdd",
     "lkpages/lkHome/lkHome",
+    "lkpages/lkAdd/lkAdd",
     "lkpages/lkAdmin/lkAdmin",
     "lkpages/lkIndex/lkIndex",
     "lkpages/lkSearch/lkSearch",
