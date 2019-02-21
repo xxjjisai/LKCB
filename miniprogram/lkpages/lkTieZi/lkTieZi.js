@@ -1,34 +1,11 @@
-// miniprogram/lkpages/lkAdd/lkAdd.js
+// miniprogram/lkpages/lkTieZi/lkTieZi.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    zkShopName: [
-      {
-        name: "旺铺转让",
-        img:"../../images/lkpages/icon_zhuanrang.png",
-        url: "/lkpages/lkAdd_wpzr/lkAdd_wpzr"
-      },
-      {
-        name: "商家入驻",
-        img: "../../images/lkpages/icon_ruzhu.png",
-        url: "/lkpages/lkAdd_wpzr/lkAdd_wpzr"
-      },
 
-      {
-        name: "门店出租",
-        img: "../../images/lkpages/icon_chuzu.png",
-        url: "/lkpages/lkAdd_wpzr/lkAdd_wpzr"
-      },
-      {
-        name: "门店求租",
-        img: "../../images/lkpages/icon_qiuzu.png",
-        url: "/lkpages/lkAdd_wpzr/lkAdd_wpzr"
-      },
-
-    ]
   },
 
   /**

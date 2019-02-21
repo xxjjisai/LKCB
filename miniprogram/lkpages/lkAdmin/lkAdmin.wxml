@@ -1,2 +1,53 @@
 <!--miniprogram/lkpages/lkAdmin/lkAdmin.wxml-->
-<text>miniprogram/lkpages/lkAdmin/lkAdmin.wxml</text>
+<!-- <text>miniprogram/lkpages/lkAdmin/lkAdmin.wxml</text> -->
+
+
+<!-- <image hidden="{{!bGetUserInfo}}" src="{{avatarUrl}}"></image>
+<text hidden="{{!bGetUserInfo}}">{{nickName}}</text> -->
+
+<!-- <view hidden="{{bGetUserInfo}}" class="userinfo-default"> 
+    <view class="userinfo-avatar-default">
+        <image src='{{avatarUrl}}'></image> 
+    </view>
+    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">授权登录</button>
+</view> -->
+
+<!-- xxxxxxxxxxxxxxxxxxx -->
+
+<view hidden="{{bGetUserInfo}}" class="container">
+    <view class="login-icon">
+        <image class="login-img" src="{{avatarUrl}}"></image>
+    </view> 
+    <view class="loginBtnView"> 
+        <button class="loginBtn" open-type="getUserInfo" lang="zh_CN" type="primary" size="{{primarySize}}" bindgetuserinfo="onGotUserInfo">授权登录</button> 
+        <button class="loginBtn" open-type="share" lang="zh_CN" type="default" size="{{primarySize}}" bindgetuserinfo="onGotUserInfo">推荐给朋友</button> 
+    </view>
+</view> 
+
+<view hidden="{{!bGetUserInfo}}" class="userinfo">
+    <view class="userinfo-avatar">
+        <open-data type="userAvatarUrl"></open-data>
+    </view>
+</view>
+
+<view class="weui-panel">
+    <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_small-appmsg">
+            <view class="weui-cells weui-cells_in-small-appmsg">
+                <navigator url="../lkTieZi/lkTieZi" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                    <view class="weui-cell__hd"><image src="../../images/lkpages/icon_wodetiezi.png" style="width: 20px;height: 20px;margin-right: 5px" /></view>
+                    <view class="weui-cell__bd weui-cell_primary">
+                        <label bindtap="fClick_WoDeTieZi">我的贴子</label>
+                    </view>
+                    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view hidden="{{!bGetUserInfo}}" class="container"> 
+    <view class="loginBtnView"> 
+        <button class="loginBtn" open-type="share" lang="zh_CN" type="default" size="{{primarySize}}" bindgetuserinfo="onGotUserInfo">推荐给朋友</button> 
+    </view>
+</view>

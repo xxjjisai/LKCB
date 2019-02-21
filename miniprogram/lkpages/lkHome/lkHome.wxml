@@ -2,9 +2,13 @@
 
 <view class="page"> 
     <view class="weui-search-bar">
-        <view class = "zk_city" style='margin-right:18px' >
+        <view class = "zk_city" style='margin-right:18px' wx:if="{{bGetUserInfo}}">
             <icon class="iconfont icon-location-copy" style='margin-right:4px' size="14"></icon>
-            <label bindtap="fClickLocation">北京市</label>
+            <label bindtap="fClickLocation">{{city}}</label>
+        </view>
+        <view class = "zk_city" style='margin-right:18px' wx:elif="{{!bGetUserInfo}}">
+            <icon class="iconfont icon-location-copy" style='margin-right:4px' size="14"></icon>
+            <label bindtap="fClickLocation">{{city}}</label>
         </view>
         <view class="weui-search-bar__form">
             <label class="weui-search-bar__label" bindtap="fClickSearchBar">
@@ -13,4 +17,57 @@
             </label>
         </view>
     </view>
+
+    <view class="weui-tab">
+        <view class="weui-navbar">
+            <block wx:for="{{tabs}}" wx:key="*this">
+                <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                    <view class="weui-navbar__title">{{item}}</view>
+                </view>
+            </block>
+            <view class="weui-navbar__slider" style="left: {{sliderLeft == null?sliderLeft:0}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel">
+            <view hidden="{{activeIndex != 0}}">
+                <block wx:for="{{zktbWPZR}}" wx:key="*this">
+                    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="../../images/weui/{{item.zkIcon}}.png" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.zkShopName}}</view>
+                            <view class="weui-media-box__desc">{{item.zkShopInfo}}</view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+            <view hidden="{{activeIndex != 1}}">
+                <block wx:for="{{zktbMMQZ}}" wx:key="*this">
+                    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="../../images/weui/{{item.zkIcon}}.png" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.zkShopName}}</view>
+                            <view class="weui-media-box__desc">{{item.zkShopInfo}}</view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+            <view hidden="{{activeIndex != 2}}">
+                <block wx:for="{{zktbMMCZ}}" wx:key="*this">
+                    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb" src="../../images/weui/{{item.zkIcon}}.png" />
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                            <view class="weui-media-box__title">{{item.zkShopName}}</view>
+                            <view class="weui-media-box__desc">{{item.zkShopInfo}}</view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+        </view>
+    </view>
+
 </view>

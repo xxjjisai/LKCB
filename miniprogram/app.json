@@ -1,11 +1,13 @@
 {
   "pages": [
-    "lkpages/lkHome/lkHome",
     "lkpages/lkAdd/lkAdd",
+    "lkpages/lkHome/lkHome",
     "lkpages/lkAdmin/lkAdmin",
     "lkpages/lkIndex/lkIndex",
     "lkpages/lkSearch/lkSearch",
-    "lkpages/lkLocation/lkLocation"
+    "lkpages/lkLocation/lkLocation",
+    "lkpages/lkTieZi/lkTieZi",
+    "lkpages/lkAdd_wpzr/lkAdd_wpzr"
   ],
   "permission": {
     "scope.userLocation": {

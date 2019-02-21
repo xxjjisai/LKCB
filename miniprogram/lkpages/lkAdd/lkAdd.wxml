@@ -1,2 +1,11 @@
 <!--miniprogram/lkpages/lkAdd/lkAdd.wxml-->
-<text>miniprogram/lkpages/lkAdd/lkAdd.wxml</text>
+<view class="page"> 
+    <view class="zk1_weui-grids">
+        <block wx:for="{{zkShopName}}" wx:key="*this">
+            <navigator url="{{item.url}}" class="zk1_weui-grid" hover-class="zk1_weui-grid_active">
+                <image class="zk1_weui-grid__icon" src="{{item.img}}" />
+                <view class="zk1_weui-grid__label">{{item.name}}</view>
+            </navigator>
+        </block>
+    </view>
+</view>
