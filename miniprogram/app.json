@@ -1,16 +1,8 @@
 {
   "pages": [
-    "lkpages/lkHome/lkHome",
-    "lkpages/lkAdd/lkAdd",
-    "lkpages/lkAdmin/lkAdmin",
-    "lkpages/lkIndex/lkIndex",
-    "lkpages/lkSearch/lkSearch",
-    "lkpages/lkLocation/lkLocation",
-    "lkpages/lkTieZi/lkTieZi",
-    "lkpages/lkAdd_wpzr/lkAdd_wpzr",
-    "lkpages/lkAdd_mmcz/lkAdd_mmcz",
-    "lkpages/lkAdd_mmqz/lkAdd_mmqz",
-    "lkpages/lkAdd_sjrz/lkAdd_sjrz"
+    "pages/lkHome/lkHome",
+    "pages/lkAdd/lkAdd",
+    "pages/lkAdmin/lkAdmin"
   ],
   "permission": {
     "scope.userLocation": {
@@ -33,19 +25,19 @@
       {
         "selectedIconPath": "images/tabBar/home_r.png",
         "iconPath": "images/tabBar/home_b.png",
-        "pagePath": "lkpages/lkHome/lkHome",
+        "pagePath": "pages/lkHome/lkHome",
         "text": "首页"
       },
       {
         "selectedIconPath": "images/tabBar/add.png",
         "iconPath": "images/tabBar/add.png",
-        "pagePath": "lkpages/lkAdd/lkAdd",
+        "pagePath": "pages/lkAdd/lkAdd",
         "text": "发布"
       },
       {
         "selectedIconPath": "images/tabBar/admin_r.png",
         "iconPath": "images/tabBar/admin_b.png",
-        "pagePath": "lkpages/lkAdmin/lkAdmin",
+        "pagePath": "pages/lkAdmin/lkAdmin",
         "text": "我的"
       }
     ]
