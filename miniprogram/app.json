@@ -1,45 +1,47 @@
 {
-  "pages": [
-    "pages/lkHome/lkHome",
-    "pages/lkAdd/lkAdd",
-    "pages/lkAdmin/lkAdmin"
-  ],
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    "pages": [
+        "lkclient/lkIndex/lkIndex",
+        "pages/lkHome/lkHome",
+        "pages/lkAdd/lkAdd",
+        "pages/lkAdmin/lkAdmin"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "window": {
+        "backgroundColor": "#e64340",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#e64340",
+        "navigationBarTitleText": "转店圈",
+        "navigationBarTextStyle": "white",
+        "onReachBottomDistance": 50,
+        "navigationStyle":"default"
+    },
+    "tabBar": {
+        "color": "#e64340",
+        "selectedColor": "#E64340",
+        "borderStyle": "white",
+        "list": [
+            {
+                "selectedIconPath": "images/tabBar/home_r.png",
+                "iconPath": "images/tabBar/home_b.png",
+                "pagePath": "lkclient/lkIndex/lkIndex",
+                "text": "转店"
+            },
+            {
+                "selectedIconPath": "images/tabBar/add.png",
+                "iconPath": "images/tabBar/add.png",
+                "pagePath": "lkclient/lkIndex/lkIndex",
+                "text": "发布"
+            },
+            {
+                "selectedIconPath": "images/tabBar/admin_r.png",
+                "iconPath": "images/tabBar/admin_b.png",
+                "pagePath": "lkclient/lkIndex/lkIndex",
+                "text": "我的"
+            }
+        ]
     }
-  },
-  "window": {
-    "backgroundColor": "#e64340",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#e64340",
-    "navigationBarTitleText": "转店圈",
-    "navigationBarTextStyle": "white",
-    "onReachBottomDistance": 50
-  },
-  "tabBar": {
-    "color": "#e64340",
-    "selectedColor": "#E64340",
-    "borderStyle": "white",
-    "list": [
-      {
-        "selectedIconPath": "images/tabBar/home_r.png",
-        "iconPath": "images/tabBar/home_b.png",
-        "pagePath": "pages/lkHome/lkHome",
-        "text": "转店"
-      },
-      {
-        "selectedIconPath": "images/tabBar/add.png",
-        "iconPath": "images/tabBar/add.png",
-        "pagePath": "pages/lkAdd/lkAdd",
-        "text": "发布"
-      },
-      {
-        "selectedIconPath": "images/tabBar/admin_r.png",
-        "iconPath": "images/tabBar/admin_b.png",
-        "pagePath": "pages/lkAdmin/lkAdmin",
-        "text": "我的"
-      }
-    ]
-  }
 }

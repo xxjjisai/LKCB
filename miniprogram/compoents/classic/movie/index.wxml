@@ -1,0 +1,5 @@
+<view class="classic-container">
+    <image class = "classic-img" src = "images/movie@img1.png" ></image>
+    <image class = "classic-tag" src = "images/movie@tag.png" ></image>
+    <text class = "classic-content">gggg</text>
+</view>

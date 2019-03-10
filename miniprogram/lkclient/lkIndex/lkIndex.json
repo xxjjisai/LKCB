@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cmpmovie":"/compoents/classic/movie/index",
+    "cmplike":"/compoents/like/index"
+  }
+}

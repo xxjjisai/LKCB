@@ -1,0 +1,7 @@
+<!--compoents/like/index.wxml-->
+<!-- <text>compoents/like/index.wxml</text> -->
+
+<view bind:tap="onLike" class='container'>
+    <image src="{{blike?yesSrc:noSrc}}"></image>
+    <text>{{blike?count:count-1}}</text>
+</view>
