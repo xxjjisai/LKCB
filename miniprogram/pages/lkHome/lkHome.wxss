@@ -1,0 +1,36 @@
+.placeholder{
+    margin: 5px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 6.3em;
+    line-height: 2.3em;
+    color: #cfcfcf;
+    border-radius: 5px
+}
+
+.zk_list_item{
+    margin-top: 15px;
+    padding: 0 10px;
+    text-align: center;
+    background-color: #EBEBEB;
+    height: 6.3em;
+    /* line-height: 2.3em; */
+    color: #cfcfcf;
+    /* border-radius: 5px */
+}
+
+.zk_list_item_icon{
+    /* margin-top: 15px; */
+
+    padding: 10px 10px;
+    text-align: center;
+    background-color: rgb(221, 98, 98);
+    height: 4.3em;
+    /* line-height: 2.3em; */
+    color: #cfcfcf;
+    /* border-radius: 5px */
+}
+
+
+
